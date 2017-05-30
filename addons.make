@@ -1,3 +1,4 @@
+ofxBox2d
 ofxCv
 ofxFft
 ofxGui
@@ -5,5 +6,6 @@ ofxJSON
 ofxOpenCv
 ofxOsc
 ofxPostProcessing
+ofxStateMachine
 ofxSvg
 ofxTween

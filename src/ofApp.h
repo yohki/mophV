@@ -5,20 +5,13 @@
 #include "ofxPostProcessing.h"
 
 #include "ofxTween.h"
+#include "ofxStateMachine.h"
 
-#define N_POLYS 4
+using namespace itg;
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
 
 public:
-    
-    enum Mode {
-        CircleSingle,
-        CircleMulti,
-        Polygon,
-        Typography
-    };
-    
     void setup();
     void update();
     void draw();
@@ -36,32 +29,7 @@ public:
     void gotMessage(ofMessage msg);
 
 private:
-    bool _useMean;
-    bool _autoFill;
-    
-    Mode _mode;
-    ofCamera _cam[3];
-    ofEasyCam _easyCam;
-    
-    ofxEasyFft _fft;
-    ofPolyline _polys[N_POLYS], _chars[N_POLYS], _shapes[N_POLYS];
-    ofMesh _meshes[N_POLYS];
-    float _mean[N_POLYS], _max[N_POLYS];
-    int _nVerts[N_POLYS] = {3, 4, 5, 6};
-    
-    ofTessellator _tessellator;
-    int _nBuffers;
-    
-    ofImage _bg;
-    ofxPostProcessing _post;
-    
-    ofTrueTypeFont _font;
-    
-    ofxTween _posTween, _scaleTween, _alphaTween[N_POLYS];
-    ofxEasingLinear _linear;
-    ofxEasingCubic _cubic;
-    ofxEasingExpo _expo;
-    
-    void setupPolygons();
-    void setupText();
+    ofxStateMachine<ofxEasyFft> _stateMachine;
+    vector<string> _states;
+    int _stateIndex;
 };
