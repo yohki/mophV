@@ -52,7 +52,7 @@ public:
         float curVol = Util::calcVolume(audio);
         _smoothedVol *= SMOOTH_FACTOR;
         _smoothedVol += (1.0 - SMOOTH_FACTOR) * curVol;
-        _scaledVol = ofMap(_smoothedVol, 0.0, VOLUME_MAX, 0.0, 1.0, true);
+        _scaledVol = ofMap(_smoothedVol, 0.0, Util::getVolumeMax(), 0.0, 1.0, true);
         
         if (_mode == Cats || _mode == Dogs) {
             updateTiles();
@@ -70,9 +70,9 @@ public:
         
         if (_debugMode) {
             ofSetColor(128);
-            ofDrawRectangle(0, 0, 200, 50);
+            ofDrawRectangle(0, 0, 200, 10);
             ofSetColor(255);
-            ofDrawRectangle(0, 0, 200 * _scaledVol, 50);
+            ofDrawRectangle(0, 0, 200 * _scaledVol, 10);
         }
     }
     
@@ -179,7 +179,7 @@ private:
         
         if (ofRandom(1.0) < 0.05) {
             float x = ofRandom(0, ofGetWidth());
-            addCircle(x, -50, ofRandom(20, 50));
+            addCircle(x, -50, ofRandom(40, 60));
         }
         
         ofxEasyFft& fft = getSharedData();
@@ -227,7 +227,7 @@ private:
             _smiles[index].draw(-128, -128);
             ofPopMatrix();
             
-            ofSetColor(255);
+            ofSetColor(64);
             _tessellator.tessellateToMesh(_groundLine, OF_POLY_WINDING_ODD, _mesh);
             _mesh.draw();
         }

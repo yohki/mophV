@@ -36,6 +36,12 @@ void ofApp::keyPressed(int key){
     } else if (key == OF_KEY_DOWN) {
         _stateIndex = (_stateIndex + 1) % _states.size();
         _stateMachine.changeState(_states[_stateIndex]);
+    } else if (key == '+') {
+        float v = Util::getVolumeMax();
+        Util::setVolumeMax(v + 0.01);
+    } else if (key == '-') {
+        float v = Util::getVolumeMax();
+        Util::setVolumeMax(v - 0.01);
     }
 }
 

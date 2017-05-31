@@ -177,7 +177,7 @@ public:
         float curVol = Util::calcVolume(audio);
         _smoothedVol *= SMOOTH_FACTOR;
         _smoothedVol += (1.0 - SMOOTH_FACTOR) * curVol;
-        _scaledVol = ofMap(_smoothedVol, 0.0, VOLUME_MAX, 0.0, 1.0, true);
+        _scaledVol = ofMap(_smoothedVol, 0.0, Util::getVolumeMax(), 0.0, 1.0, true);
     }
     
     void draw() {
@@ -222,9 +222,9 @@ public:
         
         if (_debugMode) {
             ofSetColor(128);
-            ofDrawRectangle(0, 0, 200, 50);
+            ofDrawRectangle(0, 0, 200, 10);
             ofSetColor(255);
-            ofDrawRectangle(0, 0, 200 * _scaledVol, 50);
+            ofDrawRectangle(0, 0, 200 * _scaledVol, 10);
         }
     }
 

@@ -3,7 +3,6 @@
 #include "ofMain.h"
 
 #define SMOOTH_FACTOR 0.86
-#define VOLUME_MAX 0.10
 
 class Util {
 public:
@@ -34,4 +33,17 @@ public:
         curVol = sqrt(curVol);
         return curVol;
     }
+    
+    static float getVolumeMax() {
+        return volumeMax;
+    }
+    
+    static void setVolumeMax(float v) {
+        volumeMax = MIN(1.0, MAX(0.0, v));
+        cout << "Volume Max = " << volumeMax << endl;
+    }
+private:
+    static float volumeMax;
 };
+
+float Util::volumeMax = 0.10;
